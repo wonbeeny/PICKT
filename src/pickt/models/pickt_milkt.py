@@ -75,7 +75,6 @@ class PicktQuestionEmbedding(nn.Module):
         self.type_embeddings = nn.Embedding(config.num_type, config.hidden_size, padding_idx=config.type2id["pad_id"])
         self.difficulty_embeddings = nn.Embedding(config.num_difficulty, config.hidden_size, padding_idx=config.difficulty2id["pad_id"])
         self.discriminate_embeddings = nn.Embedding(config.num_discriminate, config.hidden_size, padding_idx=config.discriminate2id["pad_id"])
-        self.content_embeddings = nn.Embedding(config.num_content, config.hidden_size, padding_idx=config.content2id["pad_id"])
         self.activity_embeddings = nn.Embedding(config.num_activity, config.hidden_size, padding_idx=config.activity2id["pad_id"])
         self.position_embeddings = nn.Embedding(config.max_position_embeddings, config.hidden_size)
 
@@ -136,6 +135,7 @@ class PicktConceptEmbedding(nn.Module):
         super().__init__()
         self.position_embeddings = nn.Embedding(config.max_position_embeddings, config.hidden_size)
         self.concept_embeddings = nn.Embedding(config.num_concept, config.hidden_size, padding_idx=config.concept2id["pad_id"])
+        self.content_embeddings = nn.Embedding(config.num_content, config.hidden_size, padding_idx=config.content2id["pad_id"])
 
         self.LayerNorm = nn.LayerNorm(config.hidden_size, eps=config.layer_norm_eps)
         self.dropout = nn.Dropout(config.hidden_dropout_prob)
