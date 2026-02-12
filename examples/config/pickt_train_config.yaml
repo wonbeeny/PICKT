@@ -1,0 +1,77 @@
+### 공통 (all)
+pipeline: train    # option: ['train', 'valid', 'test', 'pred']
+model_name: pickt
+data_name: dbekt22
+
+model_path: null
+data_args_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/data_args.json
+km_data_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/km_data.json
+output_dir: /home/jovyan/work/repo/models/DBE-KT22/pickt_train
+
+train_dataset_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/train_datasets.json
+valid_dataset_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/valid_datasets.json
+
+max_seq_length: 32
+threshold: 0.5
+
+seed: 42
+
+
+## 학습 (fit)
+metric_for_best_model: auc_micro    # 성능지표 지정 필요
+max_epochs: 20
+train_batch_size: 32
+train_num_workers: 0
+limit_train_batches: 1.0
+
+learning_rate: 4e-5
+lr_schedule: linear    # option: ['step', 'cosine', 'linear']
+optimizer: adamw       # option: ['sgd', 'adam', 'adamw']
+warmup_steps: 0
+
+accelerator: gpu        # option: ['cpu', 'gpu', 'auto']  /  tpu, hpu 사용 불가
+precision: 32-true      # option: ['16-true', '16-mixed', 'bf16-true', 'bf16-mixed', '32-true', '64-true']
+strategy: single_device           # option: ['single_device', 'ddp', 'fsdp', 'deepspeed']
+
+logger: true
+gradient_clip_algorithm: norm    # option: ['value', 'norm']
+gradient_clip_val: 1.0    # fsdp 사용 시 0.5 추천 (기본값: 1.0 - norm 사용 시)
+
+deterministic: true    # gpu 연산을 해도 재현성이 유지되기 위해 true 로 설정
+benchmark: true    # deterministic=True 면 자동으로 False 로 설정됨. cpu 사용 시 해당 옵션은 의미가 없음.
+sync_batchnorm: true    # 분산환경(DDP, FSDP 등)에서만 의미가 있음. 단일 장치(cpu, single gpu)에서 효과 없거나 무시됨.
+enable_progress_bar: true
+check_val_every_n_epoch: 1
+
+
+## 검증 (validate)
+valid_batch_size: 32
+valid_num_workers: 0
+limit_val_batches: 1.0
+
+
+## 모델 설정
+han_in_channels: 64
+han_hidden_channels: 128
+han_num_heads: 4
+
+hidden_size: 128
+# intermediate_size: 32
+intermediate_size: 256
+num_attention_heads: 8
+num_encoder_layers: 4
+num_decoder_layers: 4
+
+initializer_range: 0.02
+max_position_embeddings: 512
+
+hidden_dropout_prob: 0
+attention_probs_dropout_prob: 0
+layer_norm_eps: 1e-12
+chunk_size_feed_forward: 0
+
+hidden_act: gelu
+position_embedding_type: absolute
+output_attentions: false
+output_hidden_states: false
+use_return_dict: false

@@ -1,0 +1,27 @@
+### 공통 (all)
+pipeline: pred    # option: ['train', 'valid', 'test', 'pred']
+model_name: pickt
+data_name: dbekt22
+
+model_path: /home/jovyan/work/repo/models/DBE-KT22/pickt_train/checkpoints/pickt-dbekt22-epoch=19-auc_micro=0.8004.pt
+km_data_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/km_data.json
+output_dir: /home/jovyan/work/repo/models/DBE-KT22/pickt_pred
+
+pred_dataset_path: /home/jovyan/work/PICKT/data/DBE-KT22/preprocessed/valid_datasets.json
+
+seed: 42
+
+
+## 추론 (predict)
+pred_batch_size: 32
+pred_num_workers: 0
+limit_predict_batches: 1.0
+
+
+## device 설정
+accelerator: gpu        # option: ['cpu', 'gpu', 'tpu', 'hpu', 'auto']
+strategy: single_device           # option: ['single_device', 'dp', 'ddp', 'fsdp', 'deepspeed']
+
+deterministic: true    # gpu 연산을 해도 재현성이 유지되기 위해 true 로 설정
+benchmark: true
+sync_batchnorm: true
