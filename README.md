@@ -148,10 +148,21 @@ If this repository is useful for your research, please use a repository citation
 
 After the review process, the citation information will be updated with the final bibliographic record if the paper is accepted.
 
+
 ## License
 
 This repository is released under the **Creative Commons Attribution-NonCommercial 4.0 International (CC BY‑NC 4.0)** license.  <br>
-You are free to share and adapt the code for non‑commercial purposes, provided you give appropriate credit to the original work.<br><br>
+You are free to share and adapt the code for non‑commercial purposes, provided you give appropriate credit to the original work. <br>
 
-For full details, see:  
-[https://creativecommons.org/licenses/by-nc/4.0/](https://creativecommons.org/licenses/by-nc/4.0/)
+[![CC BY-NC 4.0 license](https://licensebuttons.net/l/by-nc/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+Under this license:
+
+- You must **clearly credit the original authors and dataset** whenever you use, share, or modify the data.  
+- You may use and redistribute this dataset for **non‑commercial** purposes, including research, education, and internal evaluation.  
+- **Commercial use, resale, sublicensing, or embedding in paid products is not allowed** without prior written permission from the dataset owner.  
+- Any modifications to the data should be clearly marked as such and not suggest that the original authors endorse your use.
+
+For more details, see the official license deed:
+
+- https://creativecommons.org/licenses/by-nc/4.0/
