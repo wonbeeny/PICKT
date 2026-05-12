@@ -2,14 +2,6 @@
 
 ![Overview](./assets/pickt_architecture.png)
 
-Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems."** This repository is intended for research code release accompanying a manuscript currently under review at *Computers and Education: Artificial Intelligence (CAEAI)*.
-
-> **Review status notice**  
-> The associated manuscript is currently under review. To preserve anonymous peer review, this repository may be updated after the review process with additional documentation, trained checkpoints, and reproducibility details. Please cite the repository rather than the unpublished manuscript until a formal publication record becomes available.
-
-
-## Overview
-
 PICKT is a practical Knowledge Tracing (KT) model for Intelligent Tutoring System (ITS) services. The model estimates learners' knowledge states by integrating diverse educational signals while preserving the characteristics of each variable.
 
 
@@ -24,111 +16,59 @@ This design is especially relevant for real-world ITS platforms where:
 - prediction models must remain stable under operational constraints.
 
 
-## Installation
+## Reproducibility
 
-There are two ways to install PICKT.
+To reproduce the **RQ2. Cold Start** experiments, follow the steps below.
 
-#### 1. Install via pip
-```console
-pip install git+https://github.com/wonbeeny/PICKT.git
-```
+#### Prerequisites
 
-#### 2. Install from source
-```console
-git clone https://github.com/wonbeeny/PICKT.git
-cd PICKT
+RQ2 requires a model that has already been trained for **RQ1**.
+
+Before running RQ2, make sure you have:
+- an RQ1-trained model checkpoint,
+- `data_args.json` and `km_data.json`.
+
+The `data_args.json` and `km_data.json` files must be stored under `./PICKT/data/Online` and must be identical to those used for RQ1 model training.
+
+#### Reinstall the package
+
+To apply the code changes in this branch, reinstall PICKT from the current branch:
+
+```bash
 pip install .
 ```
 
+The main branch-specific modification for RQ2 is in:
 
-## Requirements
+- `./PICKT/src/pickt/preprocessor/milkt_dataset.py`
 
-This code was developed with:
-- CUDA 12.4
-- Driver 550.163.01
-- Python 3.10.16
+#### Prepare cold start data
 
-Create and activate the conda environment from the YAML file:
-```console
-conda env update --name pickt --file requirements/environment.yaml
-conda activate pickt
-```
-
-Or create a new environment and install dependencies from `requirements.txt`:
-```console
-conda create -n <your_env_name> python==3.10.16 -y
-conda activate <your_env_name>
-pip install -r ./requirements/requirements.txt
-```
-
-> PyTorch should be installed separately according to your CUDA and driver versions.
-
-
-## Getting started
-
-The following files are required to run PICKT. As an example, download the DBE‑KT22 dataset as instructed in `./PICKT/data/DBE-KT22/README.md`. Then preprocess the raw data by running:
+Preprocess the cold start data by running:
 
 ```bash
-sh ./PICKT/examples/preprocess/DBE-KT22/all_run.sh
+sh ./PICKT/examples/preprocess/Offline/all_run.sh
 ```
 
-After preprocessing, make sure the following files are generated:
+After preprocessing, proceed with model inference.
 
-- `data_args.json`
-- `km_data.json`
-- `train_dataset.json`
-- `valid_dataset.json`
+#### Run inference
 
-If needed, you can also generate `test_dataset.json` and `pred_dataset.json` using the same pipeline. <br><br>
-
-After the data preparation, run the model training script:
-
-1. Check the YAML configuration files in `./PICKT/examples/config/DBE-KT22` and select the desired model.
-2. Update `./PICKT/examples/main/train.sh` to point to the selected YAML file.
-3. Run:
-    ```bash
-    sh ./PICKT/examples/main/train.sh
-    ```
-
-This will start model training and evaluation on the processed DBE‑KT22 dataset.
-
-
-## Reproducibility
-
-To reproduce the results in the paper, follow the instructions for each research question below.
-
-#### RQ1
-
-The reproduction steps for **RQ1** are the same as those in the **Getting Started** section, except that the **Online** dataset should be used instead of **DBE-KT22**.
-
-1. Download the **Our** dataset by running `./PICKT/data/download_datasets.ipynb`.
-2. Preprocess the raw data by running:
-    ```bash
-    sh ./PICKT/examples/preprocess/Online/all_run.sh
-    ```
-4. After preprocessing, make sure the following files are generated:
-   - `data_args.json`
-   - `km_data.json`
-   - `train_dataset.json`
-   - `valid_dataset.json`
-5. Check the YAML configuration files under `./PICKT/examples/config/Online` and select the desired model.
-6. Update `./PICKT/examples/main/train.sh` to point to the selected YAML file.
-7. Run the training script:
+1. Check the YAML configuration files under `./PICKT/examples/config/Offline` and select the desired model.
+2. Make sure the model checkpoint path is correctly set, since the selected configuration may require a different checkpoint.
+3. Update `./PICKT/examples/main/pred.sh` to point to the selected YAML file.
+4. Run:
    ```bash
-   sh ./PICKT/examples/main/train.sh
+   sh ./PICKT/examples/main/pred.sh
    ```
 
-This will start model training and evaluation on the processed Online dataset.
+This will run prediction for the RQ2 setting.
 
-#### RQ2
+#### Evaluate performance
 
-The reproduction code for **RQ2** will be provided in a separate branch: `repro-rq2`. <br><br>
+To evaluate model performance for the cold start setting, use the following notebook:
 
-Please switch to that branch and follow the instructions in its `README.md`.
-
-```bash
-git checkout repro-rq2
-```
+- `./PICKT/data/Offline/eval2cold_start.ipynb`
 
 
 
