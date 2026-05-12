@@ -5,7 +5,7 @@ data_name: milkt
 
 model_path: /home/jovyan/work/repo/models/Online/RQ1/gkt_train/checkpoints/gkt-milkt-epoch=04-auc_micro=0.7912.pt
 output_dir: /home/jovyan/work/repo/models/Offline/RQ2/gkt_pred
-pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/valid_datasets.json
+pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/pred_datasets.json
 km_data_path: /home/jovyan/work/PICKT/data/Online/km_data.json
 
 threshold: 0.5

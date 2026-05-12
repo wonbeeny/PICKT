@@ -5,7 +5,7 @@ data_name: milkt
 
 model_path: /home/jovyan/work/repo/models/Online/RQ1/dtransformer_train/checkpoints/dtransformer-milkt-epoch=04-auc_micro=0.8452.pt
 output_dir: /home/jovyan/work/repo/models/Offline/RQ2/dtransformer_pred
-pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/valid_datasets.json
+pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/pred_datasets.json
 
 threshold: 0.5
 
