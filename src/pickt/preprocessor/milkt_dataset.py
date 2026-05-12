@@ -130,33 +130,11 @@ class MilkTDataset(BaseDataset):
         
         return return_dict
 
-    def _split_and_pad_sequence_data(self, student_seq: list, max_seq_length: int, pad_id: int):
-        """
-        각 학생의 응답을 max_seq_length 로 분할하고, 부족한 부분은 패딩값으로 채움.
-        길이가 max_seq_length 보다 긴 응답은 분할되고, 짧은 응답은 패딩됨.
-        리스트에서 텐서로 변환 후 return.
-        
-        Args:
-            student_seq: 한 학생의 전체 풀이 이력과 관련된 데이터 모음 (list type)
-            max_seq_length: 입력 시퀀스의 최대 길이
-            pad_id: PAD 토큰 ID 값
-        Returns:
-            result: [batch_size, max_seq_length]
-        """
-        padded_data = []
-        for personal_seq in student_seq:
-            for i in range(0, len(personal_seq), max_seq_length):    # # response를 max_seq_length 단위로 분할
-                chunk = personal_seq[i:i+max_seq_length]
-                if len(chunk) < max_seq_length:
-                    chunk = chunk + [pad_id] * (max_seq_length - len(chunk))    # 패딩 적용
-                padded_data.append(chunk)
-        
-        return torch.tensor(padded_data, dtype=torch.long)
-
     # def _split_and_pad_sequence_data(self, student_seq: list, max_seq_length: int, pad_id: int):
     #     """
-    #     Cold-Start(RQ2) 성능 측정을 위한 split method.
-    #     Cold-Start 성능 측정 시 해당 method 로 교체하여 사용.
+    #     각 학생의 응답을 max_seq_length 로 분할하고, 부족한 부분은 패딩값으로 채움.
+    #     길이가 max_seq_length 보다 긴 응답은 분할되고, 짧은 응답은 패딩됨.
+    #     리스트에서 텐서로 변환 후 return.
         
     #     Args:
     #         student_seq: 한 학생의 전체 풀이 이력과 관련된 데이터 모음 (list type)
@@ -167,12 +145,34 @@ class MilkTDataset(BaseDataset):
     #     """
     #     padded_data = []
     #     for personal_seq in student_seq:
-    #         seq = personal_seq[-max_seq_length:]
-    #         if len(seq) < max_seq_length:
-    #             seq = seq + [pad_id] * (max_seq_length - len(seq))
-    #         padded_data.append(seq)
+    #         for i in range(0, len(personal_seq), max_seq_length):    # # response를 max_seq_length 단위로 분할
+    #             chunk = personal_seq[i:i+max_seq_length]
+    #             if len(chunk) < max_seq_length:
+    #                 chunk = chunk + [pad_id] * (max_seq_length - len(chunk))    # 패딩 적용
+    #             padded_data.append(chunk)
         
     #     return torch.tensor(padded_data, dtype=torch.long)
+
+    def _split_and_pad_sequence_data(self, student_seq: list, max_seq_length: int, pad_id: int):
+        """
+        Cold-Start(RQ2) 성능 측정을 위한 split method.
+        Cold-Start 성능 측정 시 해당 method 로 교체하여 사용.
+        
+        Args:
+            student_seq: 한 학생의 전체 풀이 이력과 관련된 데이터 모음 (list type)
+            max_seq_length: 입력 시퀀스의 최대 길이
+            pad_id: PAD 토큰 ID 값
+        Returns:
+            result: [batch_size, max_seq_length]
+        """
+        padded_data = []
+        for personal_seq in student_seq:
+            seq = personal_seq[-max_seq_length:]
+            if len(seq) < max_seq_length:
+                seq = seq + [pad_id] * (max_seq_length - len(seq))
+            padded_data.append(seq)
+        
+        return torch.tensor(padded_data, dtype=torch.long)
 
     def _prepend_start_id_and_trim(self, tensor: torch.Tensor, start_id: int):
         """

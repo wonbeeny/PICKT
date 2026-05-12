@@ -15,7 +15,7 @@ from tqdm.auto import tqdm
 from collections import defaultdict
 
 
-ratios=[8, 2, 0]
+ratios=[0, 0, 10]
 seed=42
 
 parser = argparse.ArgumentParser()
@@ -101,7 +101,7 @@ if __name__ == "__main__":
     user_ids = list(preprocessed_data.keys())
     
     # 데이터 분할
-    train_ids, valid_ids, test_ids = split_user_ids(
+    train_ids, valid_ids, pred_ids = split_user_ids(
         user_ids, 
         ratios=ratios, 
         seed=seed  # 재현성 보장
@@ -110,22 +110,22 @@ if __name__ == "__main__":
     user_split_results = {
         "train_ids": train_ids,
         "valid_ids": valid_ids,
-        "test_ids": test_ids,
+        "pred_ids": pred_ids,
     }
     save_json(args, "user_split_results.json", user_split_results)
 
     train_datasets = mk_datasets(preprocessed_data, train_ids)
     valid_datasets = mk_datasets(preprocessed_data, valid_ids)
-    test_datasets = mk_datasets(preprocessed_data, test_ids)
-
-    start_time = time.time()
-    save_json(args, "train_datasets.json", train_datasets)
-    print(f"train_dataset 저장 완료: {int(time.time()-start_time)}초 소요됨")
-
-    start_time = time.time()
-    save_json(args, "valid_datasets.json", valid_datasets)
-    print(f"valid_datasets 저장 완료: {int(time.time()-start_time)}초 소요됨")
+    pred_datasets = mk_datasets(preprocessed_data, pred_ids)
 
     # start_time = time.time()
-    # save_json(args, "test_datasets.json", test_datasets)
-    # print(f"test_datasets 저장 완료: {int(time.time()-start_time)}초 소요됨")
+    # save_json(args, "train_datasets.json", train_datasets)
+    # print(f"train_dataset 저장 완료: {int(time.time()-start_time)}초 소요됨")
+
+    # start_time = time.time()
+    # save_json(args, "valid_datasets.json", valid_datasets)
+    # print(f"valid_datasets 저장 완료: {int(time.time()-start_time)}초 소요됨")
+
+    start_time = time.time()
+    save_json(args, "pred_datasets.json", pred_datasets)
+    print(f"pred_datasets 저장 완료: {int(time.time()-start_time)}초 소요됨")
