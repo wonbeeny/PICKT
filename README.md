@@ -1,5 +1,7 @@
 # PICKT: **P**ractical **I**ntegrated **C**ross-consistent **K**nowledge Tracing
 
+![Overview](./assets/pickt_architecture.png)
+
 Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems."** This repository is intended for research code release accompanying a manuscript currently under review at *Computers and Education: Artificial Intelligence (CAEAI)*.
 
 > **Review status notice**  
