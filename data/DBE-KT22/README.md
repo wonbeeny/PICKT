@@ -1,6 +1,6 @@
 # DBE-KT22
 
-This directory contains the DBE-KT22 dataset files used in PICKT. <br><br>
+This directory contains the DBE-KT22 dataset files used in PICKT. <br>
 
 The original data was downloaded from:
 - https://dataverse.ada.edu.au/dataset.xhtml?persistentId=doi:10.26193/6DZWOH
@@ -19,21 +19,25 @@ Only the following CSV files were moved from the downloaded dataset package:
 Place these files in:
 
 ```bash
-./PICKT/data/DBE-KT22/original
+./PICKT/data/DBE-KT22
 ```
 
 ## Preprocessed data
 
-Preprocessed files are stored in:
+Preprocess the raw data by running:
 
 ```bash
-./PICKT/data/DBE-KT22/preprocessed
+sh ./PICKT/examples/preprocess/DBE-KT22/all_run.sh
 ```
 
-This folder contains data preprocessed by the host. <br>
-You may use the provided preprocessed files directly, or preprocess the original CSV files yourself.
+Then preprocessed files are stored in:
+
+```bash
+./PICKT/data/DBE-KT22
+```
+
 
 ## Notes
 
-- These onpen datasets are provided in website for reproducibility of the PICKT paper experiments.
+- The dataset is provided in website for reproducibility of the PICKT paper experiments.
 - The dataset is used as provided for knowledge tracing experiments in PICKT.
