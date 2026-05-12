@@ -1,0 +1,23 @@
+### 공통 (all)
+pipeline: pred    # option: ['train', 'valid', 'test', 'pred']
+model_name: dkvmn
+data_name: milkt
+
+model_path: /home/jovyan/work/repo/models/Online/RQ1/dkvmn_train/checkpoints/dkvmn-milkt-epoch=04-auc_micro=0.7869.pt
+output_dir: /home/jovyan/work/repo/models/Offline/RQ2/dkvmn_pred
+pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/valid_datasets.json
+
+threshold: 0.5
+
+seed: 42
+
+
+## 검증 및 테스트 (validate & test)
+valid_batch_size: 64
+valid_num_workers: 0
+limit_val_batches: 1.0
+
+
+## device 설정
+accelerator: gpu        # option: ['cpu', 'gpu', 'auto']  /  tpu, hpu 사용 불가
+strategy: single_device           # option: ['single_device', 'ddp', 'fsdp', 'deepspeed']

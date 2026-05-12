@@ -1,0 +1,28 @@
+### 공통 (all)
+pipeline: pred    # option: ['train', 'valid', 'test', 'pred']
+model_name: gkt
+data_name: milkt
+
+model_path: /home/jovyan/work/repo/models/Online/RQ1/gkt_train/checkpoints/gkt-milkt-epoch=04-auc_micro=0.7912.pt
+output_dir: /home/jovyan/work/repo/models/Offline/RQ2/gkt_pred
+pred_dataset_path: /home/jovyan/work/PICKT/data/Offline/valid_datasets.json
+km_data_path: /home/jovyan/work/PICKT/data/Online/km_data.json
+
+threshold: 0.5
+
+seed: 42
+
+
+## 검증 및 테스트 (validate & test)
+valid_batch_size: 64
+valid_num_workers: 0
+limit_val_batches: 1.0
+
+
+## device 설정
+accelerator: gpu        # option: ['cpu', 'gpu', 'auto']  /  tpu, hpu 사용 불가
+strategy: single_device           # option: ['single_device', 'ddp', 'fsdp', 'deepspeed']
+
+deterministic: false    # gpu 연산을 해도 재현성이 유지되기 위해 true 로 설정
+benchmark: true    # deterministic=True 면 자동으로 False 로 설정됨. cpu 사용 시 해당 옵션은 의미가 없음.
+sync_batchnorm: true    # 분산환경(DDP, FSDP 등)에서만 의미가 있음. 단일 장치(cpu, single gpu)에서 효과 없거나 무시됨.
