@@ -2,7 +2,7 @@
 
 ![Overview](./assets/pickt_architecture.png)
 
-Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems."** This repository is intended for research code release accompanying a manuscript currently under review at *Computers and Education: Artificial Intelligence (CAEAI)*.
+Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing knowledge tracing robustness for new question cold start in Intelligent Tutoring Systems."** This repository is intended for research code release accompanying a manuscript currently under review at *Computers & Education: Artificial Intelligence (CAEAI)*.
 
 > **Review status notice**  
 > The associated manuscript is currently under review. To preserve anonymous peer review, this repository may be updated after the review process with additional documentation, trained checkpoints, and reproducibility details. Please cite the repository rather than the unpublished manuscript until a formal publication record becomes available.
@@ -10,7 +10,7 @@ Official implementation of **Practical Integrated Cross-consistent Knowledge Tra
 
 ## Overview
 
-PICKT is a practical Knowledge Tracing (KT) model for Intelligent Tutoring System (ITS) services. The model estimates learners' knowledge states by integrating diverse educational signals while preserving the characteristics of each variable.
+PICKT is a practical Knowledge Tracing (KT) model for Intelligent Tutoring Systems (ITS) services. The model estimates learners' knowledge states by integrating diverse educational signals while preserving the characteristics of each variable.
 
 
 ## Motivation
@@ -142,7 +142,7 @@ If this repository is useful for your research, please use a repository citation
   author={Anonymous},
   year={2026},
   howpublished={GitHub repository},
-  note={Code release for the manuscript "Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems" under review}
+  note={Code release for the manuscript "Enhancing knowledge tracing robustness for new question cold start in Intelligent Tutoring Systems" under review}
 }
 ```
 
