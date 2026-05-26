@@ -10,7 +10,7 @@ if __name__ == '__main__':
     setup(
         name='pickt',
         version='1.0.0',
-        description='Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems."',
+        description='Official implementation of **Practical Integrated Cross-consistent Knowledge Tracing (PICKT)** for the paper **"Enhancing knowledge tracing robustness for new question cold start in Intelligent Tutoring Systems."',
         url='https://github.com/wonbeeny/PICKT.git',
         install_requires=[
             "fastexcel==0.14.0",

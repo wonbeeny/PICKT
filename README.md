@@ -82,7 +82,7 @@ If this repository is useful for your research, please use a repository citation
   author={Anonymous},
   year={2026},
   howpublished={GitHub repository},
-  note={Code release for the manuscript "Enhancing Knowledge Tracing Robustness for New Question Cold Start in Intelligent Tutoring Systems" under review}
+  note={Code release for the manuscript "Enhancing knowledge tracing robustness for new question cold start in Intelligent Tutoring Systems" under review}
 }
 ```
 
